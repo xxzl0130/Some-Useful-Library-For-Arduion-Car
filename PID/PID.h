@@ -11,18 +11,18 @@ PID_TYPE limit(PID_TYPE x,PID_TYPE Min,PID_TYPE Max);
 class PID
 {
 public:
-    PID_TYPE dState; // Last position input
-    PID_TYPE iState; // Integrator state
+    PID_TYPE dState{}; // Last position input
+    PID_TYPE iState{}; // Integrator state
 #ifdef ENABLE_INT_LIMIT
-    PID_TYPE iMax, iMin; // Maximum and minimum allowable integrator state
+    PID_TYPE iMax{}, iMin{}; // Maximum and minimum allowable integrator state
 #endif // ENABLE_INT_LIMIT
 #ifdef ENABLE_OUT_LIMIT
-    PID_TYPE oMax, oMin; // Maximum and minimum allowable output value
+    PID_TYPE oMax{}, oMin{}; // Maximum and minimum allowable output value
 #endif // ENABLE_OUT_LIMIT
-    PID_TYPE iGain, // integral gain
-           pGain, // proportional gain
-           dGain; // derivative gain
-    PID() {}
+    PID_TYPE iGain{}, // integral gain
+           pGain{}, // proportional gain
+           dGain{}; // derivative gain
+    PID() {};
 
     PID(PID_TYPE Kp = 0.0,PID_TYPE Ki = 0.0,PID_TYPE Kd = 0.0
 #ifdef ENABLE_INT_LIMIT
@@ -48,7 +48,7 @@ public:
 		iState = 0.0;
     }
 
-    PID_TYPE update(PID_TYPE error, PID_TYPE position);
+    PID_TYPE update(PID_TYPE error, PID_TYPE position = 0.0);
     void resetIntState();
     void setKp(PID_TYPE Kp);
     void setKi(PID_TYPE Ki);

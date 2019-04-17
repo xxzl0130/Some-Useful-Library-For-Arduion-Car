@@ -20,7 +20,7 @@ PID_TYPE PID::update(PID_TYPE error, PID_TYPE position)
     dState = position;
     output = pTerm + iTerm - dTerm;
 #ifdef ENABLE_OUT_LIMIT
-    output = limit(output,oMax,oMin);
+    output = limit(output,oMin,oMax);
 #endif // ENABLE_OUT_LIMIT
     return output;
 }
